@@ -1,45 +1,25 @@
-
 import { query } from '../../../lib/db';
 
+
 export async function GET(req) {
-  const { searchParams } = new URL(req.url);
-  const cedula = searchParams.get('cedula');
-
-  if (!cedula) {
-    return new Response(JSON.stringify({ error: 'Cédula es requerida' }), {
-      status: 400,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  }
-
-  try {
-    const result = await query({
-      query: 'SELECT * FROM certificado WHERE estudiante = ?',
-      values: [cedula],
-    });
-    if (result.length === 0) {
-      return new Response(JSON.stringify({ error: 'No se encontraron datos para esta cédula' }), {
-        status: 404,
+    try {
+      const certificados = await query({
+        query: 'SELECT * FROM certificado',
+        values: [],
+      });
+      return new Response(JSON.stringify(certificados), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } catch (error) {
+      console.error('Error fetching certificados:', error);
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 500,
         headers: {
           'Content-Type': 'application/json',
         },
       });
     }
-    return new Response(JSON.stringify(result), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  } catch (error) {
-    console.error('Database query error:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
   }
-}
