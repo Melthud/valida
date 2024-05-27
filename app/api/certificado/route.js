@@ -1,7 +1,7 @@
 
 import { query } from '../../../lib/db';
 
-async function GET(req) {
+export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const cedula = searchParams.get('cedula');
 
