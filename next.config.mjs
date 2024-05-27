@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+   
     env: {
         'MYSQL_HOST': '89.117.169.1',
         'MYSQL_PORT': '3306',
