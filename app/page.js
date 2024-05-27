@@ -7,7 +7,7 @@ export default function Home() {
        
 
         <p className="text-gray-900 font-black dark:text-white text-7xl">SEIDUQ - VALIDACIONES</p>
-        <p className="p-5 text-lg text-gray-900 ">Ponga su número de cédula (En caso de no mostrar nada, póngase en contacto con administración)</p>
+        <p className="p-5 text-lg dark:text-white text-gray-900 ">Ponga su número de cédula (En caso de no mostrar nada, póngase en contacto con administración)</p>
       </div>
       <div className="relative">
         <div className="p-2">
